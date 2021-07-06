@@ -7,9 +7,12 @@ let imageSelect = document.getElementById('image');
 let form = document.getElementById('form');
 form.addEventListener('submit', getDataFromForm);
 
-
-let movieList = JSON.parse(localStorage.movieList) || [];
-
+let movieList;
+try {
+   movieList = JSON.parse(localStorage.movieList) || [];
+} catch {
+  movieList = [];
+}
 if (movieList.length !=0) {
   for (let i = 0; i < movieList.length; i++) {
     render(movieList[i].name,movieList[i].genre,movieList[i].year );
